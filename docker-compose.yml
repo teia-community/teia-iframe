@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  teia-iframe:
+    image: nginx
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./webroot:/webroot
+    restart: unless-stopped
+    ports:
+      - 8092-8093:80
